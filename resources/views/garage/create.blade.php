@@ -8,7 +8,7 @@
             @csrf
             <div class="form-group">
                 <label>Direccion</label>
-                <input  class="form-control" name="address" type="text"/>
+                <input  class="form-control" required name="address" type="text"/>
                 @error('address')
                     <p style="color: red"> {{$message}}</p>
                 @enderror
@@ -16,7 +16,7 @@
             
             <div class="form-group">
                 <label>Nombre</label>
-                <input  class="form-control" name="name" type="text"/>
+                <input  class="form-control" required name="name" type="text"/>
                 @error('name')
                     <p style="color: red"> {{$message}}</p>
                 @enderror

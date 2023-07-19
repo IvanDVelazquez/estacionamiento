@@ -9,7 +9,7 @@
                 @csrf
                 <div class="form-group">
                     <label>Marca</label>
-                    <input  class="form-control" name="brand" type="text" value="{{$car->brand}}"/>
+                    <input  class="form-control" required name="brand" type="text" value="{{$car->brand}}"/>
                     @error('brand')
                     <p style="color: red"> {{$message}}</p>
                     @enderror
@@ -17,7 +17,7 @@
                 
                 <div class="form-group">
                     <label>Modelo</label>
-                    <input  class="form-control" name="model" type="text" value="{{$car->model}}"/>
+                    <input  class="form-control" required name="model" type="text" value="{{$car->model}}"/>
                     @error('model')
                     <p style="color: red"> {{$message}}</p>
                     @enderror
@@ -25,7 +25,7 @@
 
                 <div class="form-group">
                     <label>Patente</label>
-                    <input  class="form-control" name="patent" type="text" value="{{$car->patent}}"/>
+                    <input  class="form-control" required name="patent" type="text" value="{{$car->patent}}"/>
                     @error('patent')
                     <p style="color: red"> {{$message}}</p>
                     @enderror
@@ -33,7 +33,7 @@
 
                 <div class="form-group">
                     <label>Añadir imagen</label>
-                    <input type="file" class="form-control" name="image">
+                    <input type="file" required class="form-control" name="image">
                 </div>
 
                 <div class="form-group">
