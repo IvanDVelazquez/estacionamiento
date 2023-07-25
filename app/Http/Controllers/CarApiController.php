@@ -15,7 +15,7 @@ class CarApiController extends Controller
      */
     public function index(): JsonResponse
     {
-        $cars = Car::all();
+        $cars = Car::where('active', 1)->paginate(10);
         return response()->json([
             'success'=>true,
             'data'=> $cars
@@ -95,7 +95,9 @@ class CarApiController extends Controller
      */
     public function destroy($id)
     {
-        $car = Car::find($id)->delete();
+        $car = Car::find($id);
+        $car->active=0;
+        $car->save();
         return response()->json(['success'=>true],200);
     }
 }

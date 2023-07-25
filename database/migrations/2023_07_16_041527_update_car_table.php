@@ -14,7 +14,7 @@ class UpdateCarTable extends Migration
     public function up()
     {
         Schema::table('cars', function(Blueprint $table) {
-            $table->string('image_route');
+            $table->string('image_route')->after('patent');
         });
     }
 

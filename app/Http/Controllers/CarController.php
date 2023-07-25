@@ -13,7 +13,7 @@ class CarController extends Controller
 
     public function index()
     {
-        $cars = Car::orderBy('garage_id')->get();
+        $cars = Car::where('active', 1)->paginate(10);
         return view('car.index', compact('cars'));
     }
 
@@ -82,8 +82,8 @@ class CarController extends Controller
     public function destroy($id)
     {
         $car = Car::find($id);
-        $car->delete();
-
+        $car->active=0;
+        $car->save();
         return redirect()->route('car.index');
     }
 }

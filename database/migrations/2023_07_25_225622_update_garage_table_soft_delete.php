@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateCarTableForeings extends Migration
+class UpdateGarageTableSoftDelete extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class UpdateCarTableForeings extends Migration
      */
     public function up()
     {
-         
-        Schema::table('cars', function (Blueprint $table) {
-            $table->unsignedBigInteger('garage_id')->after('id');
-        
-            $table->foreign('garage_id')->references('id')->on('garages');
+        Schema::table('garages', function(Blueprint $table) {
+            $table->boolean('active')->default(1)->after('name');
         });
     }
 
@@ -28,6 +25,6 @@ class UpdateCarTableForeings extends Migration
      */
     public function down()
     {
-        Schema::dropColumns(['garage_id']);
+        Schema::dropColumns(['active']);
     }
 }

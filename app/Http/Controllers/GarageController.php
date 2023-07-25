@@ -14,7 +14,7 @@ class GarageController extends Controller
      */
     public function index()
     {
-        $garages = Garage::all();
+        $garages = Garage::where('active', 1)->paginate(10);
         return view('garage.index', compact('garages'));
     }
 
@@ -95,8 +95,8 @@ class GarageController extends Controller
     public function destroy($id)
     {
         $garage = Garage::find($id);
-        $garage->delete();
-
+        $garage->active=0;
+        $garage->save();
         return redirect()->route('garage.index');
     }
 }

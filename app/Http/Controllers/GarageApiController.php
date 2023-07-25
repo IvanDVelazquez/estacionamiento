@@ -14,7 +14,7 @@ class GarageApiController extends Controller
      */
     public function index()
     {
-        $garages = Garage::all();
+        $garages = Garage::where('active', 1)->paginate(10);
         return response()->json([
             'success'=>true,
             'data'=> $garages
@@ -81,7 +81,8 @@ class GarageApiController extends Controller
     public function destroy($id)
     {
         $garage = Garage::find($id);
-        $garage->delete();
+        $garage->active=0;
+        $garage->save();
         return response()->json(["success"=>true],200);
     }
 }
