@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GarageRequest;
 use App\Models\Garage;
 use Illuminate\Http\Request;
 
@@ -34,7 +35,7 @@ class GarageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GarageRequest $request)
     {
         $garage = new Garage();
 
@@ -53,7 +54,7 @@ class GarageController extends Controller
      */
     public function show($id)
     {
-        return view('garage.view',compact(Garage::find($id)));
+        return view('garage.view',compact(Garage::findOrFail($id)));
     }
 
     /**
@@ -75,9 +76,9 @@ class GarageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(GarageRequest $request, $id)
     {
-        $garage = Garage::find($id);
+        $garage = Garage::findOrFail($id);
 
         $garage->address = $request->address;
         $garage->name = $request->name;
@@ -94,7 +95,7 @@ class GarageController extends Controller
      */
     public function destroy($id)
     {
-        $garage = Garage::find($id);
+        $garage = Garage::findOrFail($id);
         $garage->active=0;
         $garage->save();
         return redirect()->route('garage.index');

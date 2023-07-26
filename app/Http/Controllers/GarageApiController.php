@@ -48,7 +48,7 @@ class GarageApiController extends Controller
      */
     public function show($id)
     {
-        $garage=Garage::find($id);
+        $garage=Garage::findOrFail($id);
         return  response()->json(['data'=>$garage],200);
     }
 
@@ -80,7 +80,7 @@ class GarageApiController extends Controller
      */
     public function destroy($id)
     {
-        $garage = Garage::find($id);
+        $garage = Garage::findOrFail($id);
         $garage->active=0;
         $garage->save();
         return response()->json(["success"=>true],200);

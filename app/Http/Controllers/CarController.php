@@ -47,7 +47,7 @@ class CarController extends Controller
 
     public function show($id)
     {
-        $car = Car::find($id);
+        $car = Car::findOrFail($id);
         return view('car.view',compact('car'));
     }
 
@@ -59,7 +59,7 @@ class CarController extends Controller
 
     public function update(CarRequest $request, $id)
     {
-        $car = Car::find($id);
+        $car = Car::findOrFail($id);
 
         $car->brand=$request->brand;
         $car->model=$request->model;
@@ -81,7 +81,7 @@ class CarController extends Controller
 
     public function destroy($id)
     {
-        $car = Car::find($id);
+        $car = Car::findOrFail($id);
         $car->active=0;
         $car->save();
         return redirect()->route('car.index');

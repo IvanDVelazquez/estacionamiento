@@ -8,7 +8,7 @@
                 @csrf
                 <div class="form-group">
                     <label>Marca</label>
-                    <input  class="form-control" required name="brand" type="text"/>
+                    <input  class="form-control" value=" {{old('brand')}} " required name="brand" type="text"/>
                     @error('brand')
                     <p style="color: red"> {{$message}}</p>
                     @enderror
@@ -16,7 +16,7 @@
                 
                 <div class="form-group">
                     <label>Modelo</label>
-                    <input  class="form-control" required name="model" type="text"/>
+                    <input  class="form-control" value=" {{old('model')}} " required name="model" type="text"/>
                     @error('model')
                     <p style="color: red"> {{$message}}</p>
                     @enderror
@@ -24,7 +24,7 @@
 
                 <div class="form-group">
                     <label>Patente</label>
-                    <input  class="form-control" required name="patent" type="text"/>
+                    <input  class="form-control" value=" {{old('patent')}} " required name="patent" type="text"/>
                     @error('patent')
                     <p style="color: red"> {{$message}}</p>
                     @enderror
@@ -32,12 +32,12 @@
 
                 <div class="form-group">
                     <label><h4>Añadir imagen</h4></label>
-                    <input type="file" required class="form-control" name="image">
+                    <input type="file"  class="form-control" name="image">
                 </div>
                 
                 <div class="form-group">
                     <label><h4>Garage</h4></label>
-                    <select name="garage_id">
+                    <select name="garage_id" >
                         <option value="">--Please choose an option--</option>
                         @foreach ($garages as $garage)
                         <option value="{{$garage->id}}">{{$garage->name}}</option>

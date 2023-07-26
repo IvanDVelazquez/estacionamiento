@@ -56,7 +56,7 @@ class CarApiController extends Controller
      */
     public function show($id): JsonResponse
     {
-        $car=Car::find($id);
+        $car=Car::findOrFail($id);
         return  response()->json(['data'=>$car],200);
     }
 
@@ -69,7 +69,7 @@ class CarApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $car = Car::find($id);
+        $car = Car::findOrFail($id);
         $car->brand=$request->brand;
         $car->model=$request->model;
         $car->patent=$request->patent;
@@ -95,7 +95,7 @@ class CarApiController extends Controller
      */
     public function destroy($id)
     {
-        $car = Car::find($id);
+        $car = Car::findOrFail($id);
         $car->active=0;
         $car->save();
         return response()->json(['success'=>true],200);
