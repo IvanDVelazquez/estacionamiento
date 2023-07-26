@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Garage;
 use Illuminate\Support\ViewErrorBag;
+use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
@@ -66,15 +67,24 @@ class CarController extends Controller
         $car->patent=$request->patent;
         $car->garage_id=$request->garage_id;
         
+        
         if(isset($request->image)){
+            
+            if(isset($car->image_route)){
+                if(Storage::exists('img/'.$car->image_route)){
+                    Storage::delete('img/'.$car->image_route);
+                }
+            }
+
             $fileName = time() . '.' . $request->image->extension();
             $request->image->storeAs('public/img', $fileName);
             $car->image_route= $fileName;
+            
         }
         else{
             $car->image_route= "";
         }
-
+        
         $car->save();
         return redirect()->route('car.index');
     }
