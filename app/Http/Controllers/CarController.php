@@ -6,6 +6,7 @@ use App\Http\Requests\CarRequest;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Garage;
+use File;
 use Illuminate\Support\ViewErrorBag;
 use Illuminate\Support\Facades\Storage;
 
@@ -71,8 +72,8 @@ class CarController extends Controller
         if(isset($request->image)){
             
             if(isset($car->image_route)){
-                if(Storage::exists('img/'.$car->image_route)){
-                    Storage::delete('img/'.$car->image_route);
+                if(file_exists(public_path('storage/img/'.$car->image_route))){
+                    unlink(public_path('storage/img/'.$car->image_route));
                 }
             }
 

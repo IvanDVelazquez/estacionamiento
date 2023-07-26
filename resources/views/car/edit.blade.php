@@ -41,7 +41,7 @@
                     <select name="garage_id">
                         <option value="">--Please choose an option--</option>
                         @foreach ($garages as $garage)
-                        <option value="{{$garage->id}}">{{$garage->name}}</option>
+                        <option @if ($garage->id == $car->garage_id) selected @endif value="{{$garage->id}}">{{$garage->name}}</option>
                         @endforeach
                     </select>
                     @error('garage_id')
